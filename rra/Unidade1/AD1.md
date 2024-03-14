@@ -46,7 +46,7 @@ Dadas duas variáveis, $a$ e $b$, implemente e teste um algoritmo para trocar os
 flowchart TD
 A([INICIO]) --> B{{"Digite o valor de a e b: "}}
 B --> C[/a,b/]
-C --> D{a==b}
+C --> D[a==b]
 D --> E
 ```
 
