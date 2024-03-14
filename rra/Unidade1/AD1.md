@@ -48,8 +48,8 @@ A([INICIO]) --> B{{"Digite o valor de a e b: "}}
 B --> C[/a,b/]
 C --> D[c==a]
 D --> E[a==b]
-E --> F{{"O novo valor de a é: ", a}}
-F --> G{{"O novo valor de b é: ", c}}
+E --> F{{"O novo valor de a é: " b}}
+F --> G{{"O novo valor de b é: " c}}
 G --> H([FIM])
 ```
 
@@ -62,10 +62,10 @@ FIM_ALGORITMO
 
 #### Teste de mesa (0.25 ponto)
 
-| nome_coluna1 | nome_coluna2 | nome_coluna3 | nome_coluna4 | nome_coluna5 | 
-|      --      |      --      |      --      |      --      |      --      | 
-| Adicione     | espaço       | se quiser    |  alinhar     | as barras    |   
-| verticais,   | mas          | não é        | obrigatório. | Entendido ?  |
+| a  | b  | c=a | a=b | b=c  | saida |
+| -- | -- | --  | --  | --   | --    |
+| 1  | 2 | --  | --  | --   | --    |  
+
 
 ### Questão 2 - Contagem (1 ponto)
 
