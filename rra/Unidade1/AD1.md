@@ -48,8 +48,8 @@ A([INICIO]) --> B{{"Digite o valor de a e b: "}}
 B --> C[/a,b/]
 C --> D[c==a]
 D --> E[a==b]
-E --> F{"O novo valor de a é: ", a}
-F --> G{"O novo valor de b é: ", c}
+E --> F{{"O novo valor de a é: ", a}}
+F --> G{{"O novo valor de b é: ", c}}
 G --> H([FIM])
 ```
 
