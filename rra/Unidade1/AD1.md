@@ -50,7 +50,7 @@ C --> D[c==a]
 D --> E[a==b]
 E --> F{"O novo valor de a é: ", a}
 F --> G{"O novo valor de b é: ", c}
-G --> H([FIM)]
+G --> H([FIM])
 ```
 
 #### Pseudocódigo (0.5 ponto)
