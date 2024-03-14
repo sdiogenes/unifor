@@ -46,8 +46,11 @@ Dadas duas variáveis, $a$ e $b$, implemente e teste um algoritmo para trocar os
 flowchart TD
 A([INICIO]) --> B{{"Digite o valor de a e b: "}}
 B --> C[/a,b/]
-C --> D[a==b]
-D --> E
+C --> D[c==a]
+D --> E[a==b]
+E --> F{"O novo valor de a é: ", a}
+F --> G{"O novo valor de b é: ", c}
+G --> H([FIM)]
 ```
 
 #### Pseudocódigo (0.5 ponto)
