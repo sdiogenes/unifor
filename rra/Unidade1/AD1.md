@@ -75,10 +75,10 @@ FIM_ALGORITMO
 
 #### Teste de mesa (0.25 ponto)
 
-| a  | b  | c=a | a=b | b=c  | saida         |
-| -- | -- | --  | --  | --   | --            |
-| 1  | 2  | 1   | 2   | 1    |VALORES TROCADO|  
-|10  |30  |10   |30   |10    |
+| a  | b  | c=a | a=b | b=c  | saida                     |
+| -- | -- | --  | --  | --   | --                        |
+| 1  | 2  | 1   | 2   | 1    |Valores trocado a=2 e b=1  |  
+|10  |30  |10   |30   |10    |Valores trocado a=30 e b=10|
 
 ### Questão 2 - Contagem (1 ponto)
 
