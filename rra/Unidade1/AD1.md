@@ -59,15 +59,26 @@ I --> J([FIM])
 
 ```
 Algoritmo TrocaValores
+DECLARE a, b, c NÚMERO
+ESCREVA "Digite o valor de A: "
+LEIA a
+ESCREVA "Digite o valor de B: "
+LEIA b
+c = a
+a = b
+b = c
+ESCREVA "VALORES TROCADO"
+
+
 FIM_ALGORITMO
 ```
 
 #### Teste de mesa (0.25 ponto)
 
-| a  | b  | c=a | a=b | b=c  | saida |
-| -- | -- | --  | --  | --   | --    |
-| 1  | 2 | --  | --  | --   | --    |  
-
+| a  | b  | c=a | a=b | b=c  | saida         |
+| -- | -- | --  | --  | --   | --            |
+| 1  | 2  | 1   | 2   | 1    |VALORES TROCADO|  
+|10  |30  |10   |30   |10    |
 
 ### Questão 2 - Contagem (1 ponto)
 
