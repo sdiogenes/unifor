@@ -8,8 +8,8 @@
 **Aluno(a):** Sandra Diógenes <br>
 **Matrícula:** 2219036 <br>
 
-**1a chamada (Sim/Não):** sim <br>
-**2a chamada (Sim/Não):** preencha com a opção correta
+**1a chamada (Sim/Não):** Sim <br>
+**2a chamada (Sim/Não):** Não
 
 # Avaliação Diagnóstica 1
 
@@ -89,7 +89,11 @@ Será considerado aprovado o aluno que tirar $nota$ 50 ou maior (no intervalo de
 
 ```mermaid
 flowchart TD
-A([INICIO]) --> B([FIM])
+A([INICIO]) --> B{{"Digite o número de aluno: "}}
+B --> C[/N/]
+C --> D{{"Digite a nota de cada aluno: "}}
+D --> E[/Nota_Aluno/]
+E --> F{
 ```
 
 #### Pseudocódigo (0.5 ponto)
