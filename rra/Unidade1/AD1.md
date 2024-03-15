@@ -77,8 +77,8 @@ FIM_ALGORITMO
 
 | a  | b  | c=a | a=b | b=c  | saida                     |
 | -- | -- | --  | --  | --   | --                        |
-| 1  | 2  | 1   | 2   | 1    |Valores trocado a=2 e b=1  |  
-|10  |30  |10   |30   |10    |Valores trocado a=30 e b=10|
+| 1  | 2  | 1   | 2   | 1    |Valores trocado A=2 e B=1  |  
+|10  |30  |10   |30   |10    |Valores trocado A=30 e B=10|
 
 ### Questão 2 - Contagem (1 ponto)
 
