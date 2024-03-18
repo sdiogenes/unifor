@@ -60,14 +60,14 @@ I --> J([FIM])
 ```
 Algoritmo TrocaValores
 DECLARE a, b, c NÚMERO
-ESCREVA "Digite o valor de A: "
+ESCREVA "Digite o valor de a: "
 LEIA a
-ESCREVA "Digite o valor de B: "
+ESCREVA "Digite o valor de b: "
 LEIA b
-c = a
-a = b
-b = c
-ESCREVA "VALORES TROCADO"
+c <- a
+a <- b
+b <- c
+ESCREVA "VALORES TROCADO, " a = b, b = c
 
 
 FIM_ALGORITMO
@@ -89,26 +89,44 @@ Será considerado aprovado o aluno que tirar $nota$ 50 ou maior (no intervalo de
 
 ```mermaid
 flowchart TD
-A([INICIO]) --> B{{"Digite o número de aluno: "}}
-B --> C[/N/]
-C --> D{{"Digite a nota de cada aluno: "}}
-D --> E[/Nota_Aluno/]
-E --> F{
+A([INICIO]) --> B{{"Digite a nata dos alunos: "}}
+B --> C[/nota/]
+C --> D[\cont = 0\}
+D --> E[nota >= 50]
+E --FALSE--> F{{"REPROVADO"}}
+F --TRUE--> G{{"APROVADA"}}
+G --> H[cont =+1]
+H --LOOP--> G
+H --L{{"Alunos aprovados: ",cont +1}}
+L --> M([FIM])
 ```
 
 #### Pseudocódigo (0.5 ponto)
 
 ```
-Algoritmo ContaAprovacoes
-FIM_ALGORITMO
+ALGORITMO Alunos_aprovados
+DECLARE n, nota, cont: INTEIRO
+INICIO
+ESCREVA 'Digite as notas alunos: "
+LEIA nota
+cont<- 0
+SE nota >= 50 ENTÃO
+    ESCREVA "Reprovado"
+FIM_SE
+SENÃO
+    ESCREVA "Aprovado" ,cont
+    cont <-- cont + 1
+FIM_SE
+    ESCREVA "Alunos aprovados: " , cont + 1                                             FIM_ALGORITMO
 ```
 
 #### Teste de mesa (0.25 ponto)
 
-| nome_coluna1 | nome_coluna2 | nome_coluna3 | nome_coluna4 | nome_coluna5 | 
-|      --      |      --      |      --      |      --      |      --      | 
-| Adicione     | espaço       | se quiser    |  alinhar     | as barras    |
-| verticais,   | mas          | não é        | obrigatório. | Entendido ?  |
+| aluno | nota | nota < 5O| resoltado |  cont = +1|
+| --    | --   |  --      |   --      |    --     |
+|  1    | 40   |   FALSE  | reprovado |     0     |
+|  2    |  70  |   TRUE   | aprovado  |     1     |
+|  3    |  50  |   TRUE   | aprovado  |     2     |
 
 ### Questão 3 - Soma de um conjunto de números (1 ponto)
 
