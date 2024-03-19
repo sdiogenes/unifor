@@ -149,12 +149,13 @@ C --> D[\soma = 0\]
 D --> E[\i=1\]
 E --> F{i <= n}
 F --FALSE--> G{{"A soma dos n números é: ", soma}}
-G --> Z([FIM])
+G --> Z
 F --> H{{"Digite um número: "}}
 H --> I[\num\]
 I --> J[\soma = soma + número\]
 J--TRUE--> L[\i = i + 1\]
 L --LOOP--> H
+L --> Z([FIM])
 
 
 
@@ -201,16 +202,13 @@ $$ S = \frac{1}{2} + \frac{3}{4} + \frac{5}{6} + \frac{7}{8} + \dots $$
 flowchart TD
 A([INICIO]) --> B{{"Digite o número de termos:"}}
 B --> C[\n\]
-C --> D[\soma = 0\]
-D --> E{i <= n}
-E --> F[\i MOD 2 = 1\]
-F --FALSE--> G[\"termo = i/(i + 1)"\]
-G --> H{{"A soma de S com, n termos é: ", soma}}
-H --> Z([FIM])
-G --> I[\soma = soma + termo\]
-I --> Z([FIM])
-J --TRUE--> L[\i = i + 1\]
-L --> M{{"A soma de S com, n termos é: ", soma}}
+C --> D[\n >= 0\]
+D --> E[[PARA i de 1 ATÉ n , FAÇA]]
+E --SE--> F[\i MOD 2 = 1\]
+F --TRUE--> G[\"termo = i/(i + 1)"\]
+G --> H[\soma = sama + termo\]
+H --> J[\i = i + 1\]
+J --> M{{"A soma de S com, n termos é: ", soma}}
 M --> Z([FIM])
 
 ```
