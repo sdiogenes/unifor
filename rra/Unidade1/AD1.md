@@ -68,17 +68,16 @@ c <- a
 a <- b
 b <- c
 ESCREVA "VALORES TROCADO, " a = b, b = c
-
-
 FIM_ALGORITMO
 ```
 
 #### Teste de mesa (0.25 ponto)
 
-| a  | b  | c=a | a=b | b=c  | saida                     |
-| -- | -- | --  | --  | --   | --                        |
-| 1  | 2  | 1   | 2   | 1    |Valores trocado A=2 e B=1  |  
-|10  |30  |10   |30   |10    |Valores trocado A=30 e B=10|
+| a  | b  | c=a | a=b | b=c  | saida      |
+| -- | -- | --  | --  | --   | --         |
+| 1  | 2  | 1   | 2   | 1    | a=2 e b=1  |  
+|10  |30  |10   |30   |10    | a=30 e b=10|
+|32  |43  |32   |43   |32    | a=43 e b=32|
 
 ### Questão 2 - Contagem (1 ponto)
 
@@ -86,19 +85,21 @@ Dado um conjunto $n$ de notas de alunos em um exame, implemente e teste um algor
 Será considerado aprovado o aluno que tirar $nota$ 50 ou maior (no intervalo de 0 a 100).
 
 #### Fluxograma (0.25 ponto)
-
-```mermaid
-flowchart TD
-A([INICIO]) --> B{{"Digite a nata dos alunos: "}}
-B --> C[/nota/]
-C --> D[\cont = 0\}
-D --> E[nota >= 50]
-E --FALSE--> F{{"REPROVADO"}}
-F --TRUE--> G{{"APROVADA"}}
-G --> H[cont =+1]
-H --LOOP--> G
-H --L{{"Alunos aprovados: ",cont +1}}
-L --> M([FIM])
+```mermaid 
+flowchart TD 
+A([INICIO]) --> B{{Digite o número de notas: }} 
+B --> C[\n\] 
+C --> D[\cont = 0\] 
+D --> E[\i = 1\] 
+E --> F{i <= n} 
+F --FALSE--> W{{O número de aprovados: cont}} 
+W --> Z([FIM])
+F --TRUE--> G{{Digite nota, i}} 
+G --> H[\nota\] 
+H --> I{nota >= 50 AND nota <=100} 
+I --TRUE--> J[\cont =+ 1\] 
+J --> L[\i = i + 1\]
+L --LOOP-->F
 ```
 
 #### Pseudocódigo (0.5 ponto)
@@ -107,26 +108,30 @@ L --> M([FIM])
 ALGORITMO Alunos_aprovados
 DECLARE n, nota, cont: INTEIRO
 INICIO
-ESCREVA 'Digite as notas alunos: "
-LEIA nota
+ESCREVA "Digite o número de alunos: "
+LEIA n
 cont<- 0
-SE nota >= 50 ENTÃO
-    ESCREVA "Reprovado"
-FIM_SE
-SENÃO
-    ESCREVA "Aprovado" ,cont
-    cont <-- cont + 1
-FIM_SE
-    ESCREVA "Alunos aprovados: " , cont + 1                                             FIM_ALGORITMO
+i = 1
+ENQUANTO i <= n FAÇA
+    ESCREVA "Digite a nota do aluno", i, ":"
+    LEIA nota
+    SE nota >= 50 AND nota <= 100 FAÇA
+        cont = cont + 1
+        FIM_SE
+        i = i + 1
+    FIM_ENQUANTO
+    ESCREVA "Número de alunos aprovados: ", cont
+FIM_ALGORITMO
+
 ```
 
 #### Teste de mesa (0.25 ponto)
 
-| aluno | nota | nota < 5O| resoltado |  cont = +1|
-| --    | --   |  --      |   --      |    --     |
-|  1    | 40   |   FALSE  | reprovado |     0     |
-|  2    |  70  |   TRUE   | aprovado  |     1     |
-|  3    |  50  |   TRUE   | aprovado  |     2     |
+| aluno | nota | nota <= 50 and nota <= 100| resultado |  cont = +1|
+| --    | --   |              --           |   --      |    --     |
+|  1    | 40   |           FALSE           | reprovado |     0     |
+|  2    |  70  |            TRUE           | aprovado  |     1     |
+|  3    |  50  |            TRUE           | aprovado  |     2     |
 
 ### Questão 3 - Soma de um conjunto de números (1 ponto)
 
@@ -137,22 +142,52 @@ Aceite apenas $n$ maior ou igual a zero.
 
 ```mermaid
 flowchart TD
-A([INICIO]) --> B([FIM])
+
+A([INICIO]) --> B{{"Digite a quantidade de número: "}}
+B --> C[\n\]
+C --> D[\soma = 0\]
+D --> E[\i=1\]
+E --> F{i <= n}
+F --FALSE--> G{{"A soma dos n números é: ", soma}}
+G --> Z([FIM])
+F --> H{{"Digite um número: "}}
+H --> I[\num\]
+I --> J[\soma = soma + número\]
+J--TRUE--> L[\i = i + 1\]
+L --LOOP--> H
+
+
+
 ```
 
 #### Pseudocódigo (0.5 ponto)
 
 ```
-Algoritmo ContaAprovacoes
+ALGORITMO Soma_Número
+DECLARE n, número, i, soma: INTEIRO
+INICIO
+ESCREVA "Digite a quantidade de número: "
+LEIA n
+soma<- 0
+PARA i de 1 até n FAÇA
+    ESCREVA "Digite um número: "
+    LEIA número
+    soma <- soma + número
+FIM_PARA
+ESCREVA "A soma dos", n, números é: ", soma
 FIM_ALGORITMO
+
 ```
 
 #### Teste de mesa (0.25 ponto)
 
-| nome_coluna1 | nome_coluna2 | nome_coluna3 | nome_coluna4 | nome_coluna5 | 
-|      --      |      --      |      --      |      --      |      --      | 
-| Adicione     | espaço       | se quiser    |  alinhar     | as barras    |
-| verticais,   | mas          | não é        | obrigatório. | Entendido ?  |
+|  n  |  i | número |soma|
+|  -- | -- |   --   | -- |
+|  4  | 1  |   5    |  5 |
+|  4  | 2  |  10    | 15 |
+|  4  | 3  |  -2    | 13 |
+|  4  | 4  |   7    | 20 |
+|  4  | 5  |   -    |  - |
 
 ### Questão 4 - Cálculo de uma série (1 ponto)
 
@@ -164,13 +199,40 @@ $$ S = \frac{1}{2} + \frac{3}{4} + \frac{5}{6} + \frac{7}{8} + \dots $$
 
 ```mermaid
 flowchart TD
-A([INICIO]) --> B([FIM])
+A([INICIO]) --> B{{"Digite o número de termos:"}}
+B --> C[\n\]
+C --> D[\soma = 0\]
+D --> E{i <= n}
+E --> F[\i MOD 2 = 1\]
+F --FALSE--> G[\"termo = i/(i + 1)"\]
+G --> H{{"A soma de S com, n termos é: ", soma}}
+H --> Z([FIM])
+G --> H[\soma = soma + termo\]
+H --> I([FIM])
+F --TRUE--> J[\i = i + 1\]
+J --> L{{"A soma de S com, n termos é: ", soma}}
+
+
 ```
 
 #### Pseudocódigo (0.5 ponto)
 
 ```
-Algoritmo ContaAprovacoes
+Algoritmo CalcularValorS
+DECLARE n, i: INTEIRO
+DECLARE soma, termo: REAL
+INICIO
+ESCREVA "Digite número de termos: "
+LEIA n
+n <= 0
+soma <- 0
+PARA i de 1 até n, FAÇA
+    SE i MOD 2 = 1 ENTÃO
+        "termo <- i /(i + 1)"
+        soma <- soma + termo
+    FIM_SE
+FIM_PARA
+ESCREVA "O valor de S com", n, "termos é: ", soma
 FIM_ALGORITMO
 ```
 
