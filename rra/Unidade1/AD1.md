@@ -58,7 +58,7 @@ I --> J([FIM])
 #### Pseudocódigo (0.5 ponto)
 
 ```
-Algoritmo TrocaValores
+ALGORITMO TrocaValores
 DECLARE a, b, c NÚMERO
 ESCREVA "Digite o valor de a: "
 LEIA a
@@ -207,18 +207,18 @@ E --> F[\i MOD 2 = 1\]
 F --FALSE--> G[\"termo = i/(i + 1)"\]
 G --> H{{"A soma de S com, n termos é: ", soma}}
 H --> Z([FIM])
-G --> H[\soma = soma + termo\]
-H --> I([FIM])
-F --TRUE--> J[\i = i + 1\]
-J --> L{{"A soma de S com, n termos é: ", soma}}
-
+G --> I[\soma = soma + termo\]
+I --> Z([FIM])
+J --TRUE--> L[\i = i + 1\]
+L --> M{{"A soma de S com, n termos é: ", soma}}
+M --> Z([FIM])
 
 ```
 
 #### Pseudocódigo (0.5 ponto)
 
 ```
-Algoritmo CalcularValorS
+ALGORITMO Calcular_Valor_S
 DECLARE n, i: INTEIRO
 DECLARE soma, termo: REAL
 INICIO
@@ -238,35 +238,65 @@ FIM_ALGORITMO
 
 #### Teste de mesa (0.25 ponto)
 
-| nome_coluna1 | nome_coluna2 | nome_coluna3 | nome_coluna4 | nome_coluna5 | 
-|      --      |      --      |      --      |      --      |      --      | 
-| Adicione     | espaço       | se quiser    |  alinhar     | as barras    |
-| verticais,   | mas          | não é        | obrigatório. | Entendido ?  |
+| n = 5 | termo  |  soma  |  soma = soma + termo |resutado |         
+|  --   |   --   |   --   |           --         |   --    |
+|   -   |  1/2   |    0   |   soma = 0 + 1/2     |   1/2   |
+|   -   |  3/4   |  1/2   |   soma = 1/2 + 3/4   |   5/4   |
+|   -   |  5/6   |  5/4   |   soma = 5/4 + 5/6   |  25/12  |
+|   -   |  7/8   | 25/12  | soma = 25/12 + 7/8   |  71/24  |
+|   -   |  0/10  | 71/24  | soma = 71/24 + 9/10  | 763/120 |
 
 ### Questão 5 - Cálculo fatorial (2 pontos)
 
-Dado um número $n$, calcular o fatorial de $n$ (escrito como $n!$), onde $n ≥ 0$.
-
+Dado um número $n$, calcular o fatorial de $n$ (escrito como $n!$), onde $n ≥ 0$
 #### Fluxograma (0.5 ponto)
 
 ```mermaid
 flowchart TD
-A([INICIO]) --> B([FIM])
+A([INICIO]) --> B{{"Digite um número inteiro positivo: "}}
+B --> C[\n\]
+C --> D{n >= 0}
+D --SE--> E[\Inicialize fatorial = 1\]
+E --SENÃO--> F{{"Erro: n incalido"}}
+F --> Z
+E --> G[[PARA i de 1 ATÉ n]]
+G --> H[\fatoreal = fatoreal * i\]
+H --LOOP--> G
+G --> I{{"O fatoreal é: ", fatoreal}}
+I --> Z([FIM])
+
 ```
 
 #### Pseudocódigo (1.0 ponto)
 
 ```
-Algoritmo ContaAprovacoes
+Algoritmo Calculo_Fatorial
+DECLARE n, i, , fatorial: INTEIRO
+ESCREVA "Digite um nùmero inteiro positivo: "
+LEIA n
+n <- >= 0
+fatoreal <- 1
+PARA i de 1 ATÉ n FAÇA
+    fatoreal <- fatoreal * i
+FIM_PARA
+ESCREVA "O fatoreal de", n, é: ", fatoreal
 FIM_ALGORITMO
 ```
 
 #### Teste de mesa (0.5 ponto)
 
-| nome_coluna1 | nome_coluna2 | nome_coluna3 | nome_coluna4 | nome_coluna5 | 
-|      --      |      --      |      --      |      --      |      --      | 
-| Adicione     | espaço       | se quiser    |  alinhar     | as barras    |
-| verticais,   | mas          | não é        | obrigatório. | Entendido ?  |
+// fatoreal de 5! = 5 * 4 * 3 * 2 * 1 = 120 //
+
+
+|n = 5|fatorial = 1| i = i * n | n! = n! * i | saida  |  
+| --  |     --     |     --    |    --       |  --    |       
+|  -  |     -      |           | n! = 1 * 1  |   1    |              
+|  -  |     -      |           | n! = 1 * 2  |   2    |              
+|  -  |     -      |           | n! = 2 * 3  |   6    |
+|  -  |     -      |           | n! = 6 * 4  |   24   |
+|  -  |     -      |           | n! = 24 * 5 |  120   | 
+
+
 
 ### Questão 6 - Geração da sequência de Fibonacci (2 pontos)
 
@@ -278,21 +308,59 @@ Cada termo, além dos dois primeiros, é derivado da soma dos seus dois antecess
 
 ```mermaid
 flowchart TD
-A([INICIO]) --> B([FIM])
+A([INICIO]) --> B{{"Digite o valor de n: "}}
+B --> C[\n\]
+C --> D{n >= 1}
+D --SE--> E[\Inicialize a = 0 , b = 1\]
+E --> F{{"Erro: n invalido"}}
+F --> Z
+F --SENÃO--> G[Imprima a, b]
+G --> H[[PARA i de 3 ATÉ n]]
+H --> I[próximo = a + b]
+I --> J[Imprima proximo]
+J --> K[\A = B\]
+K --> L[\b = proximo\]
+L --> H
+G --> Z([FIM])
+
+ 
 ```
 
 #### Pseudocódigo (1.0 ponto)
 
 ```
-Algoritmo ContaAprovacoes
+ALGORITMO Srquencia_Fibonacci
+DECLARE n, a, b, proximo: INTEIRO
+ESCREVA "Digite o valor de n: "
+LEIA n
+n >= 1
+a <- 0
+b <- 1
+ESCREVA "os primeiros" , n, "termos da sequência de Fibonacco sâo: "
+LEIA n
+PARA i de 3 até n FAÇA
+    proximo <- a + b
+    ESCREVA proximo, ", "
+    a <- b
+    b <- proximo
+FIM_PARA
+FIM_ALGORITIMO
 FIM_ALGORITMO
 ```
 #### Teste de mesa (0.5 ponto)
 
-| nome_coluna1 | nome_coluna2 | nome_coluna3 | nome_coluna4 | nome_coluna5 | 
-|      --      |      --      |      --      |      --      |      --      | 
-| Adicione     | espaço       | se quiser    |  alinhar     | as barras    |
-| verticais,   | mas          | não é        | obrigatório. | Entendido ?  |
+| It  |  n  |  termo | proximo |   saida    | 
+|  -- | --  |   --   |    --   |     --     | 
+|  1  |  8  |   0    |    -    |     0      |
+|  2  |  8  |   1    |    -    |     1      |
+|  3  |  8  |   -    |  0 + 1  |     1      |            
+|  4  |  8  |   -    |  1 + 1  |     2      |            
+|  5  |  8  |   -    |  1 + 2  |     3      |            
+|  6  |  8  |   -    |  2 + 3  |     5      |
+|  7  |  8  |   -    |  3 + 5  |     8      |
+|  8  |  8  |   -    |  5 + 8  |    13      |
+
+
 
 ### Questão 7 - Inversão dos dígitos de um número inteiro (2 pontos)
 
@@ -302,19 +370,32 @@ Inverter a ordem dos dígitos de um número inteiro positivo.
 
 ```mermaid
 flowchart TD
-A([INICIO]) --> B([FIM])
+A([INICIO]) --> B{{"Digie um número inteiro de dois digitos: "}}
+B --> C[\num\]
+C --> D[\unidade = num % 10\]
+D --> E[\dezena = num / 10\]
+E --> F[\numInvertido = unidade *10 + dezena/]
+F --> G([FIM])
 ```
 
 #### Pseudocódigo (1.0 ponto)
 
 ```
-Algoritmo ContaAprovacoes
+Algoritmo Inverter_Digitos
+DECLARE num, unidade, dezena, numInvertido: INTEIRO
+ESCREVA "Digite um número inteiro positivo de dois digitos: "
+LEIA num
+unidade <- num % 10
+dezena <- num / 10
+numInvertido <- unidade * 10 + dezena
+ESCREVA "Número invertido é: ", numInvertido
 FIM_ALGORITMO
 ```
 
 #### Teste de mesa (0.5 ponto)
 
-| nome_coluna1 | nome_coluna2 | nome_coluna3 | nome_coluna4 | nome_coluna5 | 
-|      --      |      --      |      --      |      --      |      --      | 
-| Adicione     | espaço       | se quiser    |  alinhar     | as barras    |
-| verticais,   | mas          | não é        | obrigatório. | Entendido ?  |
+| num |unidade = num % 10|dezena=num/10|calculo=unidade*10+dezena|numInvertido| 
+| --  |        --        |     --      |              --         |     --     | 
+| 37  |        7         |      3      |   calculo = 7 * 10 + 3  |     73     |
+| 81  |        1         |      8      |   calculo = 1 * 10 + 8  |     18     |
+| 25  |        5         |      2      |   calcule = 5 * 10 + 2  |     52     |
