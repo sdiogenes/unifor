@@ -89,7 +89,7 @@ ESCREVA "A média dos números dados é", Med
 FIM_ALGORITMO
 ```
 
-#### Teste de mesa (0.5 ponto)
+#### Teste de mesa (0.5 ponto)D
 
 |N1|N2|N3|N4|Med = (N1 + N2 + N3 + N4)/4|Saída| 
 |--|--|--|--|--|--|
