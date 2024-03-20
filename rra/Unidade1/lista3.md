@@ -101,13 +101,33 @@ Atualize o algoritmo para determinar se um número inteiro e positivo é par ou 
 
 ```mermaid
 flowchart TD
-A([INICIO]) --> B([FIM])
+A([INICIO]) --> B{{"Digite um número inteiro e pasitivo: "}}
+B --> C[\n\]
+C --ENQUANTO--> D[\n >= 0\]
+D --TRUE--> E[\n % 2 =0\]
+E --> F{{"O número é par"}}
+F --FALSE-->G{{"O número é impar"}}
+G --> Z
+D --LOOP--> H{{"Número invalido, insira um número maior ou igual a zero."}}
+H --> Z([FIM])
 ```
 
 #### Pseudocódigo (1.0 ponto)
 
 ```
 Algoritmo ClassificaCategoria
+DECLARE n, INTEIRO
+ESCREVA "Digite um número: " 
+    LEIA n
+    SE n >= 0 ENTÃO
+        SE n % 2 == 0 ENTÃO
+            ESCREVA "O número é par."
+        SENÃO
+            ESCREVA "O número é ímpar."
+        FIM SE
+    SENÃO
+        ESCREVA "Por favor, insira um número maior ou igual a zero."
+    FIM SE
 FIM_ALGORITMO
 ```
 
@@ -125,13 +145,23 @@ Faça um algoritmo que exiba na tela uma contagem de 0 até 30, exibindo apenas 
 
 ```mermaid
 flowchart TD
-A([INICIO]) --> B([FIM])
+A([INICIO]) --> B[[i = 0 ATÉ 30 PASSO 1 FAÇA]]
+B --> C[\"(i % 3 == 0)"\]
+C --> D{{"O número é: i}}
+D --> Z([FIM])
 ```
 
 #### Pseudocódigo (1.0 ponto)
 
 ```
 Algoritmo ClassificaCategoria
+DECLARE i, n, INTEIRO
+INÍCIO
+    PARA i ← 0 ATÉ 30 PASSO 1 FAÇA
+        SE (i % 3 == 0) ENTÃO
+            ESCREVA i
+        FIM SE
+    FIM PARA
 FIM_ALGORITMO
 ```
 
