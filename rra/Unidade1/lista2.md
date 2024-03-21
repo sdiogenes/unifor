@@ -272,18 +272,18 @@ ALGORITMO ClassificaCategoria
 DECLARE idade, infantil A, infantil B, juvenil A, juvenil B, adulto: INTEIRO
 ESCREVA "Digite a idade: "
 LEIA idade
-idade < 5
-ESCREVA "idade não é valida"
+ENQUANTO idade < 5
+	ESCREVA "idade não é valida"
 SE idade >= 5 E idade <= 7 ENTÂO
-  ESCREVA "Infantil A"
+	ESCREVA "Infantil A"
 SENÃO SE idade>= 8 E idade <= 10 ENTÃO
-  ESCREVA "Infantil B"
+	ESCREVA "Infantil B"
 SENÃO SE idade >= 11 E idade <=13 ENTÃO
-  ESCREVA "Juvenil A"
+	ESCREVA "Juvenil A"
 SENÃO SE idade >= 14 E idade <= 17 ENTÃO
-  ESCREVA "Juvenil B"
+	ESCREVA "Juvenil B"
 SENÃO
-ESCREVA "Adulto"
+	ESCREVA "Adulto"
 FIM_SE
 FIM_ALGORITMO
 ```
