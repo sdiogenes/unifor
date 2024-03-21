@@ -368,32 +368,38 @@ Inverter a ordem dos dígitos de um número inteiro positivo.
 
 ```mermaid
 flowchart TD
-A([INICIO]) --> B{{"Digie um número inteiro de dois digitos: "}}
-B --> C[\num\]
-C --> D[\unidade = num % 10\]
-D --> E[\dezena = num / 10\]
-E --> F[\numInvertido = unidade *10 + dezena/]
-F --> G([FIM])
+A([INICIO]) --> B{{"Digie um número inteiro e positivo: "}}
+B --> C[\número\]
+C --> D[\numIvertido = 0\]
+D --ENQUANTO--> E{número > 0}
+E --> F[\digito = número % 10/]
+F --> G[\numInvertido = numIvertido * 10 + digito\]
+G --> H[\número = número // 10\]
+H --> J{{"Número invertido é: ", numIvertido}}
+J --> Z([FIM]) 
 ```
 
 #### Pseudocódigo (1.0 ponto)
 
 ```
 Algoritmo Inverter_Digitos
-DECLARE num, unidade, dezena, numInvertido: INTEIRO
-ESCREVA "Digite um número inteiro positivo de dois digitos: "
-LEIA num
-unidade <- num % 10
-dezena <- num / 10
-numInvertido <- unidade * 10 + dezena
-ESCREVA "Número invertido é: ", numInvertido
+DECLARE número, digito, numInvertido: INTEIRO
+ESCREVA "Digite um número inteiro positivo: "
+LEIA número
+numInvertido <- 0
+ENQUANTO número > 0 FAÇA
+    digito <- número % 10
+    numInvertido <- numInvertido * 10 + digito
+    número <- número // 10
+FIM_ENQUANTO
+ESCREVA "Número invertido: ", numIvertido
 FIM_ALGORITMO
 ```
 
 #### Teste de mesa (0.5 ponto)
 
-| num |unidade = num % 10|dezena=num/10|calculo=unidade*10+dezena|numInvertido| 
-| --  |        --        |     --      |              --         |     --     | 
-| 37  |        7         |      3      |   calculo = 7 * 10 + 3  |     73     |
-| 81  |        1         |      8      |   calculo = 1 * 10 + 8  |     18     |
-| 25  |        5         |      2      |   calcule = 5 * 10 + 2  |     52     |
+| interoção| número |numInvertido = 0|digito = número % 10|numInvertido = número * 10 + digito|número = número // 10|numInvertido|
+|    --    |   --   |       --       |         --         |                  --               |        --           |    --      |
+|     1    |  154   |       -        |   154 % 10 = 4     |          0 * 10 + 4 = 4           |   154 // 10 = 15    |            |
+|     2    |   15   |       -        |   15 % 10 = 5      |          4 * 10 + 5 = 45          |    15 // 10 = 1     |            |
+|     3    |    1   |       -        |    1 % 10 = 1      |         45 * 10 + 1 = 451         |     1 // 10 = 0     |            |
