@@ -272,7 +272,7 @@ Algoritmo Calculo_Fatorial
 DECLARE n, i, , fatorial: INTEIRO
 ESCREVA "Digite um nùmero inteiro positivo: "
 LEIA n
-n <- >= 0
+SE n <- >= 0
 fatoreal <- 1
 PARA i de 1 ATÉ n FAÇA
     fatoreal <- fatoreal * i
