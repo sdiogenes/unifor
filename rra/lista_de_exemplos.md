@@ -1,6 +1,6 @@
 
 # UNIFOR
-**Nome**: Sergio de Paiva Ximenes Filho <br>
+**Nome**: lista_de_exempos <br>
 **Disciplina**: Raciocínio Lógico Algorítmo
 
 ## Exercício exemplo
