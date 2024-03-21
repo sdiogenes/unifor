@@ -1,5 +1,5 @@
 # UNIFOR
-**Nome**: Nome do estudante <br>
+**Nome**: Sandra M Diógenes <br>
 **Disciplina**: Raciocínio lógico algorítm
 
 ## Exercício exemplo 1
