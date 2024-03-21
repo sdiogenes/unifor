@@ -1,6 +1,6 @@
 
 # UNIFOR
-**Nome**: Nome do estudante <br>
+**Nome**: Sandra M Diogenes <br>
 **Disciplina**: Raciocínio lógico algorítmico
 
 ## Lista de exercícios 01
