@@ -29,29 +29,29 @@ I --> Z
 ```
 1  ALGORTIMO verifica_par_impar
 2  DECLARE numero, resto: INTEIRO
-3  ESCREVA "Digite um número: "
-4  INICIO
-4  LEIA numero
-5  SE numero >= 0 ENTAO                  // verifica se o inteiro é positivo
-6    resto = numero % 2                 // calcula o resto da divisão por 2
-7    SE resto == 0 ENTAO                // verifica se o resto é igual a zero
-8      ESCREVA "O número é par!"
-9    SENAO
-10     ESCREVA "O número é impar!"
-11   FIM_SE
-11  SENAO                                // caso inteiro for negativo (condição linha 5)
-12    ESCREVA "O número deve ser postivo!"
-13  FIM_SE
-13 FIM
+3  INICIO
+4    ESCREVA "Digite um número: "
+5    LEIA numero
+6    SE numero >= 0 ENTAO                  // verifica se o inteiro é positivo
+7      resto <- numero % 2                 // calcula o resto da divisão por 2
+8      SE resto == 0 ENTAO                // verifica se o resto é igual a zero
+9        ESCREVA "O número é par!"
+10     SENAO
+11       ESCREVA "O número é impar!"
+12     FIM_SE
+13   SENAO                                // caso inteiro for negativo (condição linha 5)
+14     ESCREVA "O número deve ser postivo!"
+15   FIM_SE
+16 FIM
 ```
 
 #### Teste de mesa (0,25 ponto)
 | numero | numero >= 0 | resto | resto == 0 |           Saída              |
 |   --   |    --       |   --  |      --    |             --               | 
-|   -1   |     F       |   -   |     -      | "O número deve ser postivo!" |
+|   -2   |     F       |   -   |     -      | "O número deve ser postivo!" |
 |    0   |     V       |   0   |     V      |      "O número é par!"       |
-|   13   |     V       |   1   |     F      |     "O número é impar!"      |
-|   30   |     V       |   0   |     V      |      "O número é par!"       |
+|   15   |     V       |   1   |     F      |     "O número é impar!"      |
+|   44   |     V       |   0   |     V      |      "O número é par!"       |
 
 ## Exercício 02 (3 pontos)
 Represente, em fluxograma e pseudocódigo, um algoritmo para calcular o novo salário de um funcionário. 
@@ -120,15 +120,19 @@ I --> Z
 ```
 ALGORITIMO Media_Aritimética
 DECLARE n1, n2, m: NÚMERO
-ESCREVA "Digite a 1ª nota: "
-LEIA n1
-ESCREVA "Digite a 2ª nota: "
-LEIA n2
-m = (n1 + n2)/2
-SE m >= 7 
-  ENTÃO ESCREVA "Aprovado" , m
-SENÃO
-  ESCREVA "Reprovado" , m
+INICIO
+  ESCREVA "Digite a 1ª nota: "
+  LEIA n1
+  ESCREVA "Digite a 2ª nota: "
+  LEIA n2
+  SE n1 >= 0 E n2 >= 0 ENTÃO 
+    m = (n1 + n2)/2
+    SE m >= 7 ENTÃO
+      ESCREVA "Aprovado" , m
+    FIM_SE
+    SENÃO
+      ESCREVA "A NOTA DEVE SER MAIOR QUE ZERO!"
+    FIM_SE
 FIM_ALGORITIMO
 
 ```
