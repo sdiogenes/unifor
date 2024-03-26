@@ -116,11 +116,13 @@ H --> Z([FIM])
 
 ```
 Algoritmo ClassificaCategoria
-DECLARE n, INTEIRO
+DECLARE n, resto: INTEIRO
+INICIO
 ESCREVA "Digite um número: " 
-    LEIA n
-    SE n >= 0 ENTÃO
-        SE n % 2 == 0 ENTÃO
+LEIA n
+
+ENQUANTO n < 0 FAÇA
+         n % 2 == 0 ENTÃO
             ESCREVA "O número é par."
         SENÃO
             ESCREVA "O número é ímpar."
