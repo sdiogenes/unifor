@@ -181,8 +181,8 @@ R-->Z([END])
 
 ```
 Algoritmo Calculadora
- DECLARE N1,N2,Rs: float
-	 Op: int
+ DECLARE N1,N2,Resto: NÚMERO
+	 Op: INTEIRO
  INICIO
  ESCREVA "Intruções da calculadora: 1 = adição, 2 = subtração, 3 = multiplição, 4              
 	  = divisão, 5 = divisão inteira, 6 = resto da divisão, 7 = exponenciação/radicação" 
