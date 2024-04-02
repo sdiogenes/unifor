@@ -40,18 +40,23 @@ Por exemplo, se na apresentação do exercício, o aluno atenter parcialmente os
 ### Questão 1 - Troca dos valores de duas variáveis (1 ponto)
 
 Dadas duas variáveis, $a$ e $b$, implemente e teste um algoritmo para trocar os valores atribuídos a elas.
+1. Guardar o valor original da variável $a$ em uma variável auxiliar $aux$;
+2. Atribuir à variável $a$ o valor original da variável $b$;
+3. Atribuir à variável $b$ o valor original da variável $a$, que está armazenado na variável auxiliar $aux$.
+4. Exibir os novos valores de $a$ e $b$.
+
 #### Fluxograma (0.25 ponto)
 
 ```mermaid
 flowchart TD
 A([INICIO]) --> B{{"Digite o valor de a: "}}
-B --> C[/a/]
+B --> C[\a\]
 C --> D{{"Digite o valor de b: "}}
-D --> E[/b/]
-E --> F[c==a]
-F --> G[a==b]
-G --> H{{"O novo valor de A é: ",b}}
-H --> I{{"O novo valor de B é: ",c}}
+D --> E[\b\]
+E --> F[aux = a]
+F --> G[a = b]
+G --> H{{"a =", a}}
+H --> I{{"b =", b}}
 I --> J([FIM])
 ```
 
