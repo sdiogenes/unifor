@@ -40,6 +40,8 @@ Por exemplo, se na apresentação do exercício, o aluno atenter parcialmente os
 ### Questão 1 - Troca dos valores de duas variáveis (1 ponto)
 
 Dadas duas variáveis, $a$ e $b$, implemente e teste um algoritmo para trocar os valores atribuídos a elas.
+
+#### Descrição geral do algoritmo
 1. Guardar o valor original da variável $a$ em uma variável auxiliar $aux$;
 2. Atribuir à variável $a$ o valor original da variável $b$;
 3. Atribuir à variável $b$ o valor original da variável $a$, que está armazenado na variável auxiliar $aux$.
@@ -53,30 +55,43 @@ A([INICIO]) --> B{{"Digite o valor de a: "}}
 B --> C[\a\]
 C --> D{{"Digite o valor de b: "}}
 D --> E[\b\]
-E --> F[aux = a]
+E --> F[c = a]
 F --> G[a = b]
-G --> H{{"a =", a}}
-H --> I{{"b =", b}}
-I --> J([FIM])
+G --> H{{"b =", c}}
+H --> I{{"a =", a}}
+I --> J{{"b =", b}}
+J --> Z([FIM])
 ```
 
 #### Pseudocódigo (0.5 ponto)
 
 ```
 ALGORITMO TrocaValores
-DECLARE a, b, c NÚMERO
-ESCREVA "Digite o valor de a: "
-LEIA a
-ESCREVA "Digite o valor de b: "
-LEIA b
-c <- a
-a <- b
-b <- c
-ESCREVA "VALORES TROCADO, " a = b, b = c
+DECLARE a, b, c: NÚMERO    // duvidas: quando coloco NÚMERO é admitindo INTEIRO e REAL?
+
+INICIO
+    // Insira a primeira instrução
+    ESCREVA "Digite o valor de a: "
+    // Guarda esta informação
+    LEIA a
+    // Insira a segunda instrução
+    ESCREVA "Digite o valor de b: "
+    // Guarda esta informação
+    LEIA b
+    // Atribui uma terceira variaval igual a 'a'
+    c <- a
+    // Atribui 'a' igual 'b'
+    a <- b
+    // Atribui 'b' igual 'c'
+    b <- c
+    // O novo valor de a 
+    ESCREVA "a=", b        // duvida é pra troca de valores 'a fica b' e 'b fica a'
+    // O novo valor de b 
+    ESCREVA "b=", c       // duvida  c = a então b = c
 FIM_ALGORITMO
 ```
 
-#### Teste de mesa (0.25 ponto)
+#### Tabela de testes (0.25 ponto)
 
 | a  | b  | c=a | a=b | b=c  | saida      |
 | -- | -- | --  | --  | --   | --         |
@@ -89,60 +104,124 @@ FIM_ALGORITMO
 Dado um conjunto $n$ de notas de alunos em um exame, implemente e teste um algoritmo para fazer uma contagem $cont$ do número de alunos que foram aprovados no exame. 
 Será considerado aprovado o aluno que tirar $nota$ 50 ou maior (no intervalo de 0 a 100).
 
+#### Descrição geral do algoritmo
+1. Obter o número de notas $n$ a serem processadas;
+2. Inicializar a contagem $cont$ com zero;
+3. Enquanto houver notas a serem processadas, fazer repetidamente:
+    - obter a próxima nota;
+    - se a nota for suficiente para passar no exame ($n ≥ 50$) então adicionar 1 (um) à contagem $cont$;
+4. Exibir a contagem $cont$ (número total de aprovações).
+
 #### Fluxograma (0.25 ponto)
+
+Fluxograma conforme descrição do algoritmo acima, usando o loop ENQUANTO.
+
+```mermaid 
+flowchart TD 
+A([INICIO]) --> B{{Digite o número de alunos: }} 
+B --> C[\a\] 
+C --> D[\cont = 0\] 
+D --> E[\i = 1\] 
+E --> F{i <= a} 
+F --FALSE--> G{{O número de alunos aprovados: cont}} 
+G --> Z([FIM])
+F --TRUE--> H{{Digite a nota do aluno, i}} 
+H --> I[\nota\] 
+I --> J{"nota >= 50 <br>E <br>nota <=100"} 
+J --TRUE--> L[\cont =+ 1\] 
+J --FALSE--> M[\i = i + 1\]
+L --> M
+M --LOOP-->F
+```
+
+Fluxograma opcional usando o loop PARA.
+
 ```mermaid 
 flowchart TD 
 A([INICIO]) --> B{{Digite o número de notas: }} 
 B --> C[\n\] 
 C --> D[\cont = 0\] 
-D --> E[\i = 1\] 
-E --> F{i <= n} 
-F --FALSE--> W{{O número de aprovados: cont}} 
-W --> Z([FIM])
-F --TRUE--> G{{Digite nota, i}} 
-G --> H[\nota\] 
-H --> I{nota >= 50 AND nota <=100} 
-I --TRUE--> J[\cont =+ 1\] 
-J --> L[\i = i + 1\]
-L --LOOP-->F
+D --> E[[i = 1 ATE n PASSO 1]] 
+E --"i=1,2...,n"--> F{{Digite nota, i}} 
+E --"i > n"--> G{{O número de alunos aprovados: cont}} 
+G --> Z([FIM])
+F --> I[\nota\] 
+I --> J{"nota >= 50 <br>E <br>nota <=100"} 
+J --FALSE/LOOP--> E
+J --TRUE--> M[\cont = + 1\]
+M --LOOP--> E
 ```
 
 #### Pseudocódigo (0.5 ponto)
 
 ```
-ALGORITMO Alunos_aprovados
-DECLARE n, nota, cont: INTEIRO
+ALGORITMO Conta_Aprovados
+DECLARE n, nota, cont, i: INTEIRO
+
 INICIO
-ESCREVA "Digite o número de alunos: "
-LEIA n
-cont<- 0
-i = 1
-ENQUANTO i <= n FAÇA
-    ESCREVA "Digite a nota do aluno", i, ":"
-    LEIA nota
-    SE nota >= 50 AND nota <= 100 FAÇA
-        cont = cont + 1
+
+    // Insira a primeira informação
+    ESCREVA "Digite o número de alunos: " // duvida neste caso tanto faz pedi a quantidade de notas ou a número de alunos?
+    // Guarda esta informação
+    LEIA n
+    // Iniciar contagem aparti do zero
+    cont = 0
+    // inclementar de 1 ate n "quantidade de notas"
+    PARA i DE 1 ATÉ n FAÇA
+        // Insira a nota do primeiro aluno
+        ESCREVA "Digite a nota do aluno", i, ":"
+        // Guarda esta informação
+        LEIA nota
+        // se a nota >=50 e nota <=100 Aprovado
+        SE nota >= 50 E nota <= 100 ENTÃO
+            // conte
+            cont = cont + 1
         FIM_SE
-        i = i + 1
-    FIM_ENQUANTO
-    ESCREVA "Número de alunos aprovados: ", cont
-FIM_ALGORITMO
+    FIM_PARA
+    // Transmita o resuldado
+    ESCREVA "Número de alunos aprovados é:", cont
+
+FIM
 
 ```
 
-#### Teste de mesa (0.25 ponto)
+#### Tabela de testes (0.25 ponto)
+Tabela de testes referente ao algoritmo usando o loop ENQUANTO.
 
-| aluno | nota | nota <= 50 and nota <= 100| resultado |  cont = +1|
-| --    | --   |              --           |   --      |    --     |
-|  1    | 40   |           FALSE           | reprovado |     0     |
-|  2    |  70  |            TRUE           | aprovado  |     1     |
-|  3    |  50  |            TRUE           | aprovado  |     2     |
+| it | n  | i  | cont | i<=n  | nota, i | nota | nota_valida | cont+1 | i+1 | saída        | 
+| -- | -- | -- | --   | --    | --      | --   | --          | --     | --  | --           |
+| 1  | 5  | 1  |  0   | True  | nota 1  | 90   | True        | 1      | 2   |              |
+| 2  | 5  | 2  |  1   | True  | nota 2  | 30   | False       | 1      | 3   |              |
+| 3  | 5  | 3  |  1   | True  | nota 3  | 80   | True        | 2      | 4   |              |
+| 4  | 5  | 4  |  2   | True  | nota 4  | 60   | True        | 3      | 5   |              |
+| 5  | 5  | 5  |  3   | True  | nota 5  | 00   | False       | 3      | 6   |              |
+| 6  | 5  | 6  |  3   | False |         |      |             |        |     | Aprovados: 3 |
+
+Tabela de testes referente ao algoritmo usando o loop PARA.
+
+| it | n  | cont |  i | nota, i | nota | nota_valida | cont+1 | saída      | 
+| -- | -- | --   | -- |   --    | --   |     --      |   --   |      --    | 
+| 1  | 5  |  0   |  1 |  nota 1 | 90   |    True     |    1   |            |          
+| 2  | 5  |  1   |  2 |  nota 2 | 30   |    False    |    1   |            |
+| 3  | 5  |  1   |  3 |  nota 3 | 80   |    True     |    2   |            |
+| 4  | 5  |  2   |  4 |  nota 4 | 60   |    True     |    3   |            |
+| 5  | 5  |  3   |  5 |  nota 5 | 00   |    False    |    3   |            |
+| 6  | 5  |  3   |  6 |         |      |             |        |Aprovados: 3|   
 
 ### Questão 3 - Soma de um conjunto de números (1 ponto)
 
 Dado um conjunto de $n$ números, implemente e teste um algoritmo para calcular a soma desses números. <br>
 Aceite apenas $n$ maior ou igual a zero.
 
+#### Descrição geral do algoritmo
+
+1. Obter a quantidade de números $n$ a serem somados.
+2. Inicializar a variável $soma$ com 0 (zero).
+3. Enquanto menos do que $n$ números tiverem sido somados, fazer repetidamente:
+    - obter o próximo número $i$;
+    - calcular a soma atual, adicionando o número $i$ obtido à soma mais recente;
+4. Exibir a soma dos $n$ números
+   
 #### Fluxograma (0.25 ponto)
 
 ```mermaid
@@ -150,50 +229,70 @@ flowchart TD
 
 A([INICIO]) --> B{{"Digite a quantidade de número: "}}
 B --> C[\n\]
-C --> D[\soma = 0\]
-D --> E[\i=1\]
-E --> F{i <= n}
-F --FALSE--> G{{"A soma dos n números é: ", soma}}
-G --> Z
-F --> H{{"Digite um número: "}}
-H --> I[\num\]
-I --> J[\soma = soma + número\]
-J--TRUE--> L[\i = i + 1\]
-L --LOOP--> H
-L --> Z([FIM])
-
-
-
+C --> D{n >= 0}
+D --FALSE--> E{{"0 valor deve ser maior ou igual a zero!"}}
+E --> Z([FIM])
+D --TRUE--> F[\soma = 0\]
+F --> G[i = 1]
+G --> H{i <= n}
+H --FALSE--> I{{"A soma dos números é" , soma}}
+I --> Z
+H--TRUE--> J{{"Digite um número: "}}
+J --> L[\num\]
+L --> M[soma = + num]
+M --> N[i = + 1]
+N --LOOP--> H
 ```
 
 #### Pseudocódigo (0.5 ponto)
 
 ```
 ALGORITMO Soma_Número
-DECLARE n, número, i, soma: INTEIRO
-INICIO
-ESCREVA "Digite a quantidade de número: "
-LEIA n
-soma<- 0
-PARA i de 1 até n FAÇA
-    ESCREVA "Digite um número: "
-    LEIA número
-    soma <- soma + número
-FIM_PARA
-ESCREVA "A soma dos", n, números é: ", soma
-FIM_ALGORITMO
+DECLARE n, i, soma: INTEIRO
 
+INICIO
+    // Insira a primeira informação
+    ESCREVA "Digite a quantidade de número: "
+    // Guarda esta informação
+    LEIA n
+    // inseri condições satisfatoria
+    SE n >=0 ENTAO
+        // informar condições iniciais da soma
+        soma <- 0
+        // informar condições iniciais para o inclemento
+        i <- 1
+        // estabelecer informações condições
+        ENQUANTO i <= n FAÇA
+            // Insira a primeira informação
+            ESCREVA "Digite um número:"
+            // Guarda esta informação
+            LEIA num
+            // inserir operação matematica que soma todos os numeros 
+            soma <- soma + num
+            // inserir operação matematica para satifazer o inclemento
+            i <- i + 1
+        FIM_ENQUANTO
+
+    //Condição de não satisfazer 
+    SENÃO
+    //Informar resultado
+        ESCREVA "O valor deve ser maior ou igual a zero!"
+    FIM_SE
+
+    //Informar resultado final
+    ESCREVA "A soma dos números é:", soma
+FIM
 ```
 
-#### Teste de mesa (0.25 ponto)
-
-|  n  |  i | número |soma|
-|  -- | -- |   --   | -- |
-|  4  | 1  |   5    |  5 |
-|  4  | 2  |  10    | 15 |
-|  4  | 3  |  -2    | 13 |
-|  4  | 4  |   7    | 20 |
-|  4  | 5  |   -    |  - |
+#### Tabela de testes (0.25 ponto)
+| it | n  | n >= 0 | soma | i  | i <= n | num | soma =+ num  | saída                   |
+| -- | -- | --     | --   | -- | --     | --  | --           | --                      |
+|    | -3 | False  |      |    |        |     |              | O valor deve ser > 0    |
+| 1  | 0  | True   | 0    | 1  | False  |     |              | A soma dos números é 0  |
+| 1  | 3  | True   | 0    | 1  | True   | 5   | 0 + 5 = 5    |                         |
+| 2  | 3  | True   | 5    | 2  | True   | 10  | 5 + 10 = 15  |                         |
+| 3  | 3  | True   | 15   | 3  | True   | 20  | 15 + 20 = 35 |                         |
+| 4  | 3  | True   | 35   | 4  | False  |     |              | A soma dos números é 35 |
 
 ### Questão 4 - Cálculo de uma série (1 ponto)
 
@@ -201,21 +300,32 @@ Calcular o valor de S, conforme definido pela seguinte série infinita:
 
 $$ S = \frac{1}{2} + \frac{3}{4} + \frac{5}{6} + \frac{7}{8} + \dots $$
 
+#### Descrição geral do algoritmo
+
+1. Obter o número de termos $n$;
+2. Inicializar a variável $S$ com 0 (zero).
+3. Iterar o valor de $n$ na variável $i$ iniciando com 0 (zero), de acordo com as instruções abaixo:
+    - calcular o numerador na variável $numerador$;
+    - calcular o denominador  na variável $denominador$;;
+    - calcular o termo da série na variável $termo$, onde $termo = numerador/denominador$;
+    - adicionar esse termo à variável $S$.
+4. Exibir o valor da série $S$.
+   
 #### Fluxograma (0.25 ponto)
 
 ```mermaid
 flowchart TD
-A([INICIO]) --> B{{"Digite o número de termos:"}}
+A([INICIO]) --> B{{"Digite o número de termos da série S:"}}
 B --> C[\n\]
-C --> D[\n >= 0\]
-D --> E[[PARA i de 1 ATÉ n , FAÇA]]
-E --SE--> F[\i MOD 2 = 1\]
-F --TRUE--> G[\"termo = i/(i + 1)"\]
-G --> H[\soma = sama + termo\]
-H --> J[\i = i + 1\]
-J --> M{{"A soma de S com, n termos é: ", soma}}
-M --> Z([FIM])
-
+C --> D[S = 0]
+D --> E[[i = 0 ATÉ n-1 PASSO 1]]
+E --"i > n-1"--> F{{"Soma da série S é:", S}}
+F --> Z([FIM])
+E --"i = 0,1,2,...,n-1"--> G[numerador = 2 * i + 1]
+G --> H[denominador = 2 * i + 2]
+H --> I[termo = numerador / denominador]
+I --> J[S+= termo]
+J --LOOP--> E
 ```
 
 #### Pseudocódigo (0.5 ponto)
@@ -239,7 +349,7 @@ ESCREVA "O valor de S com", n, "termos é: ", soma
 FIM_ALGORITMO
 ```
 
-#### Teste de mesa (0.25 ponto)
+#### Tabela de testes (0.25 ponto)
 
 | n = 5 | termo  |  soma  |  soma = soma + termo |resutado |         
 |  --   |   --   |   --   |           --         |   --    |
@@ -286,7 +396,7 @@ ESCREVA "O fatoreal de", n, é: ", fatoreal
 FIM_ALGORITMO
 ```
 
-#### Teste de mesa (0.5 ponto)
+#### Tabela de testes (0.5 ponto)
 
 // fatoreal de 5! = 5 * 4 * 3 * 2 * 1 = 120 //
 
@@ -350,7 +460,7 @@ FIM_PARA
 FIM_ALGORITIMO
 FIM_ALGORITMO
 ```
-#### Teste de mesa (0.5 ponto)
+#### Tabela de testes (0.5 ponto)
 
 | It  |  n  |  termo | proximo |   saida    | 
 |  -- | --  |   --   |    --   |     --     | 
@@ -401,7 +511,7 @@ ESCREVA "Número invertido: ", numIvertido
 FIM_ALGORITMO
 ```
 
-#### Teste de mesa (0.5 ponto)
+#### Tabela de testes (0.5 ponto)
 
 | interoção| número |numInvertido = 0|digito = número % 10|numInvertido = número * 10 + digito|número = número // 10|numInvertido|
 |    --    |   --   |       --       |         --         |                  --               |        --           |    --      |
