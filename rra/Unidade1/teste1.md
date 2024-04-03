@@ -78,24 +78,31 @@ G --> Z([FIM])
 ```
 Algoritmo Novo_Salario
 DECLARE x, y, NÚMERO
-ESCREVA "Digite o saláio atual: "
-LEIA x
-SE x >= 500
-  ENTÃO y = x + 1.2 * x
-SENÃO
-y = x + 1.1 * x
-ESCREVA "Novo Salário é: " y
-FIM_ALGORITIMO
+INICIO
+  // Obter o valor do salario atual
+  ESCREVA "Digite o salário atual: "
+  // Guardar o salario atual
+  LEIA sal_atual
+  // insirir primeira informação condicional
+  SE sal_atual <= 500 ENTAO
+    novo_sal = sal_atual * 1.2
+  // insirir segundfa informação condicional
+  SENÃO
+    novo_sal = sal_atual * 1.1
+  FIM_SE
+  // imprima resultado 
+  ESCREVA "Novo Salário é: ", novo_sal
+FIM
 
 ```
 
 #### Teste de mesa (1.0 ponto)
+| sal_atual | sal_atual >= 500 |novo_sal       | saída                   | 
+| --        | --               | --            | --                      | 
+| 300       | False            | 300*1.2 = 360 | O novo salário é R$ 360 |
+| 700       | True             | 700*1.1 = 770 | O novo salário é R$ 770 |
+| 500       | True             | 500*1.2 = 600 | O novo salário é R$ 600 |
 
-|     x    | x >= 500 | aumento 20%| aumento 10%  | Novo salário | 
-|    --    |   --     |      --    |      --      |      --      | 
-|   450    |   FALSE  |     -      |      495     |     495      |
-|   900    |   TRUE   |    1080    |       -      |    1080      |
-|  2000    |   TRUE   |    2400    |       -      |    2400      |
 ## Exercício 03 (3 pontos)
 Represente, em fluxograma e pseudocódigo, um algoritmo para calcular a média aritmética entre duas notas de um aluno e mostrar sua situação, que pode ser aprovado ou reprovado.
 
@@ -124,29 +131,40 @@ L --> Z
 ALGORITIMO Media_Aritimética
 DECLARE n1, n2, m: NÚMERO
 INICIO
+  // Obter a primeira nota
   ESCREVA "Digite a 1ª nota: "
+  // Guardar esta primeira nota
   LEIA n1
+  // Obter a segunda nota
   ESCREVA "Digite a 2ª nota: "
+  // Guardar esta segunda nota
   LEIA n2
-  SE n1 >= 0 E n2 >= 0 ENTÃO 
+  // inserir a primeira estrutura condicional
+  SE n1 >= 0 E n2 >= 0 ENTÃO
+    // inserir a operação matematica
     m = (n1 + n2)/2
+    // inserir a segunda estrutura condicional
     SE m >= 7 ENTÃO
+      // imprimir resultado
       ESCREVA "Aprovado" , m
     FIM_SE
+    // se não satisfazer (n1 >= 0 E n2 >= 0)
     SENÃO
+      // imprima a nota deve ser maior que zero
       ESCREVA "A NOTA DEVE SER MAIOR QUE ZERO!"
-    FIM_SE
-FIM_ALGORITIMO
+    FIM_SENÃO
+FIM
 
 ```
 
 #### Teste de mesa (1 ponto)
+| nota1 | nota2 | nota1 >= 0 E nota2 >= 0 | media        |            saĩda               | 
+| --    | --    | --                      | --           |              --                | 
+| -2    | 0     | False                   |              | A nota deve ser maior que zero!| 
+| 0     | 0     | True                    | (0+0)/2 = 0  | O aluno está reprovado!        |
+| 5     | 7     | True                    | (5+7)/2 = 6  | O aluno está reprovado!        |
+| 6     |  9    | True                    | (6+9)/2 = 7,5| O aluno está aprovado!         |
 
-|  n1  |  n2  | m = (n1 + n2)/2 | m >= 7 |  resutado  | 
-|  --  |  --  |        --       |  --    |     --     | 
-| 8,0  |  4,0 |      6,0        | FALSE  | Reprovado  |
-| 5,0  |  9,0 |      7,0        | TRUE   | Aprovado   |
-| 9,0  |  8,0 |      8,5        | TRUE   | Aprovado   |
 ## Exercício 04 (3 pontos)
 Represente, em fluxograma e pseudocódigo, um algoritmo que, a partir da idade do candidato(a), determinar se pode ou não tirar a CNH. 
 Caso não atender a restrição de idade, calcular quantos anos faltam para o candidato estar apto.
@@ -198,8 +216,10 @@ FIM
 ```
 #### Teste de mesa (1 ponto)
 
-| idade | idade >= 18 | falta = 18 - idade |   resutado    | 
-|  --   |     --      |        --          |       --      | 
-|   17  |  false      | falta = 18 - 17    |  falta 1 ano  |
-|   18  |   true      |         -          |idade permitida|
-|   12  |   false     | falta = 18 - 12    |  falta 6 anos |
+| idade | idade < 0 | idade >= 18 | anos_apto | saída                                        | 
+| --    | --        | --          | --        | --                                           | 
+| -1    | True      |             |           |                                              |
+| 1     | False     | False       | 18-1 = 17 | Faltam 17 ano(s) para o candidato estar apto!|
+| 16    | False     | False       | 18-16 = 2 | Faltam 2 ano(s) para o candidato estar apto! |
+| 18    | False     | True        |           | O candidato está apto a tirar a CNH!         |
+
