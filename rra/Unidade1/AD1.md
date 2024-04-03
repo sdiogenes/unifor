@@ -518,19 +518,33 @@ FIM
 
 Inverter a ordem dos dígitos de um número inteiro positivo.
 
+#### Descrição geral do algoritmo
+
+1. Obter o número inteiro positivo $num$ a ser invertido;
+2. Inicializar a variável $num \textunderscore inv$ com 0 (zero);
+3. Enquanto o número for maior que zero ($num > 0$), faça repetidamente:
+    - Calcular o último dígito do número na variável $digito$;
+    - Adicionar o dígito ao número invertido $num \textunderscore inv$;
+    - Remover o último dígito do número original $num$; 
+4. Exibir o número invertido.
+5. 
 #### Fluxograma (0.5 ponto)
 
 ```mermaid
 flowchart TD
 A([INICIO]) --> B{{"Digie um número inteiro e positivo: "}}
 B --> C[\número\]
-C --> D[\numIvertido = 0\]
-D --ENQUANTO--> E{número > 0}
-E --> F[\digito = número % 10/]
-F --> G[\numInvertido = numIvertido * 10 + digito\]
-G --> H[\número = número // 10\]
-H --> J{{"Número invertido é: ", numIvertido}}
-J --> Z([FIM]) 
+C --> D{num >= 0}
+D --TRUE--> E[num_inv = 0]
+E --> F{num > 0}
+F --FALSE--> G{{"Número invertido:", numero_inv}}
+G --> Z([FIM])
+F --TRUE--> H[digito = num % 10]
+H --> I[num_inv = num_inv * 10 + digito]
+I --> K[num = num // 10]
+K --LOOP--> F
+D --FALSE--> L{{O número deve ser positivo!}}
+L --> Z
 ```
 
 #### Pseudocódigo (1.0 ponto)
