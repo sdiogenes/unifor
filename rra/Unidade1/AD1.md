@@ -480,21 +480,27 @@ J --LOOP--> F
 ```
 ALGORITMO Srquencia_Fibonacci
 DECLARE n, a, b, proximo: INTEIRO
-ESCREVA "Digite o valor de n: "
-LEIA n
-n >= 1
-a <- 0
-b <- 1
-ESCREVA "os primeiros" , n, "termos da sequência de Fibonacco sâo: "
-LEIA n
-PARA i de 3 até n FAÇA
-    proximo <- a + b
-    ESCREVA proximo, ", "
-    a <- b
-    b <- proximo
-FIM_PARA
-FIM_ALGORITIMO
-FIM_ALGORITMO
+INICIO
+    // Obter um numero
+    ESCREVA "Digite o valor de n: "
+    // Guarda esta informação
+    LEIA n
+    // inserir condição matematica
+    n >= 1
+    a <- 0
+    b <- 1
+    //Exibir o resultado
+    ESCREVA "os primeiros" , n, "termos da sequência de Fibonacco sâo: "
+    // Guarda esta informação
+    LEIA n
+    // Inseri condições para ocorrer as interações
+    PARA i de 3 até n FAÇA
+        proximo <- a + b
+        ESCREVA proximo, ", "
+        a <- b
+        b <- proximo
+    FIM_PARA
+FIM
 ```
 #### Tabela de testes (0.5 ponto)
 
@@ -532,15 +538,21 @@ J --> Z([FIM])
 ```
 Algoritmo Inverter_Digitos
 DECLARE número, digito, numInvertido: INTEIRO
-ESCREVA "Digite um número inteiro positivo: "
-LEIA número
-numInvertido <- 0
-ENQUANTO número > 0 FAÇA
-    digito <- número % 10
-    numInvertido <- numInvertido * 10 + digito
-    número <- número // 10
-FIM_ENQUANTO
-ESCREVA "Número invertido: ", numIvertido
+INICIO
+    // Obter um numero
+    ESCREVA "Digite um número inteiro positivo: "
+    // Guarda esta informação
+    LEIA número
+    // inserir condição matematica
+    numInvertido <- 0
+    // Inseri condições para ocorrer as interações
+    ENQUANTO número > 0 FAÇA
+        digito <- número % 10
+        numInvertido <- numInvertido * 10 + digito
+        número <- número // 10
+        FIM_ENQUANTO
+    //Exibir o resultado
+    ESCREVA "Número invertido: ", numIvertido
 FIM_ALGORITMO
 ```
 
