@@ -331,37 +331,55 @@ J --LOOP--> E
 #### Pseudocódigo (0.5 ponto)
 
 ```
-ALGORITMO Calcular_Valor_S
-DECLARE n, i: INTEIRO
-DECLARE soma, termo: REAL
+ALGORITMO Soma_Serie
+DECLARE n, numerador, denominador: INTEIRO
+DECLARE S, termo: REAL
+
 INICIO
-ESCREVA "Digite número de termos: "
-LEIA n
-n <= 0
-soma <- 0
-PARA i de 1 até n, FAÇA
-    SE i MOD 2 = 1 ENTÃO
-        "termo <- i /(i + 1)"
-        soma <- soma + termo
-    FIM_SE
+   // Insira a primeira informação   
+    ESCREVA "Digite número de termos da série S: "
+    // Guarda esta informação
+    LEIA n
+    // informar condições iniciais
+    S <- 0
+    // inclementar de 1 ate n-1 no passo 1
+    PARA i de 0 ATÉ n-1 PASSO 1 FAÇA
+    // estabelecer primeira informações condições
+    numerador = 2 * i + 1
+    // estabelecer segunda informações condições
+    denominador <- 2 * i + 2
+    // estabelecer terceira informações condições
+    termo = numerador / denominador
+    // inseri condições satisfatoria
+    S += termo
 FIM_PARA
-ESCREVA "O valor de S com", n, "termos é: ", soma
+//Informar resultado final
+ESCREVA "Soma  da série é: ", S
 FIM_ALGORITMO
 ```
 
 #### Tabela de testes (0.25 ponto)
 
-| n = 5 | termo  |  soma  |  soma = soma + termo |resutado |         
-|  --   |   --   |   --   |           --         |   --    |
-|   -   |  1/2   |    0   |   soma = 0 + 1/2     |   1/2   |
-|   -   |  3/4   |  1/2   |   soma = 1/2 + 3/4   |   5/4   |
-|   -   |  5/6   |  5/4   |   soma = 5/4 + 5/6   |  25/12  |
-|   -   |  7/8   | 25/12  | soma = 25/12 + 7/8   |  71/24  |
-|   -   |  0/10  | 71/24  | soma = 71/24 + 9/10  | 763/120 |
+| it | n  | S  | i | numerador | denominador | termo | S += termo     | saída                  |
+| -- | -- | -- |-- | --        | --          | --    | --             | --                     |
+|    | 0  | 0  |   |           |             |       |                |                        |
+| 1  | 4  | 0  | 0 | 2*0+1 = 1 | 2*0+2 = 2   | 1/2   | 0+1/2 = 1/2    |                        |
+| 2  | 4  | 0  | 1 | 2*1+1 = 1 | 2*1+2 = 2   | 3/4   | 1/2+3/4 = 1.25 |                        |
+| 3  | 4  | 0  | 2 | 2*2+1 = 1 | 2*2+2 = 2   | 5/6   | 0+1/2 = 2.08   |                        |
+| 4  | 4  | 0  | 3 | 2*3+1 = 1 | 2*3+2 = 2   | 7/8   | 0+1/2 = 2.96   | Soma da série S é 2.96 |
+
 
 ### Questão 5 - Cálculo fatorial (2 pontos)
 
 Dado um número $n$, calcular o fatorial de $n$ (escrito como $n!$), onde $n ≥ 0$
+
+#### Descrição geral do algoritmo
+
+1. Obter o número $n$, onde $n \geq 0$;
+2. Inicializar a variável $fator$ com 1 (um) para armazenar o resultado do cálculo do fatorial;
+3. Iterar o valor de $n$ na variável $i$, ou seja, executar $n$ vezes, as instruções abaixo:
+    - Incrementar o valor atual $fator$ multiplicando pelo valor de $i$;
+4. Exibir o resultado ($n!$).
 #### Fluxograma (0.5 ponto)
 
 ```mermaid
