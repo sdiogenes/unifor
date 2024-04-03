@@ -260,7 +260,7 @@ INICIO
         soma <- 0
         // informar condições iniciais para o inclemento
         i <- 1
-        // estabelecer informações condições
+        // estabelecer informações condicional de repetição
         ENQUANTO i <= n FAÇA
             // Insira a primeira informação
             ESCREVA "Digite um número:"
