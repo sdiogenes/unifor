@@ -192,7 +192,7 @@ INICIO
       anos_apto <- 18 - idade
       // imprimir resultado
       ESCREVA "Faltam", anos_apto, "ano(s) para o candidato estar apto
-      FIM_SE
+    FIM_SE
   FIM_SE
 FIM
 ```
