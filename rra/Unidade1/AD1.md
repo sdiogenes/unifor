@@ -70,7 +70,7 @@ ALGORITMO TrocaValores
 DECLARE a, b, c: NÚMERO    // duvidas: quando coloco NÚMERO é admitindo INTEIRO e REAL?
 
 INICIO
-    // Insira a primeira instrução
+    // Obter a primeira instrução
     ESCREVA "Digite o valor de a: "
     // Guarda esta informação
     LEIA a
@@ -160,7 +160,7 @@ DECLARE n, nota, cont, i: INTEIRO
 
 INICIO
 
-    // Insira a primeira informação
+    // Obter a primeira informação
     ESCREVA "Digite o número de alunos: " // duvida neste caso tanto faz pedi a quantidade de notas ou a número de alunos?
     // Guarda esta informação
     LEIA n
@@ -251,7 +251,7 @@ ALGORITMO Soma_Número
 DECLARE n, i, soma: INTEIRO
 
 INICIO
-    // Insira a primeira informação
+    // Obter a primeira informação
     ESCREVA "Digite a quantidade de número: "
     // Guarda esta informação
     LEIA n
@@ -336,13 +336,13 @@ DECLARE n, numerador, denominador: INTEIRO
 DECLARE S, termo: REAL
 
 INICIO
-   // Insira a primeira informação   
+    // Obter a primeira informação   
     ESCREVA "Digite número de termos da série S: "
     // Guarda esta informação
     LEIA n
     // informar condições iniciais
     S <- 0
-    // inclementar de 1 ate n-1 no passo 1
+    // Inseri condições para ocorrer o inclementar
     PARA i de 0 ATÉ n-1 PASSO 1 FAÇA
     // estabelecer primeira informações condições
     numerador = 2 * i + 1
@@ -387,14 +387,14 @@ flowchart TD
 A([INICIO]) --> B{{"Digite um número inteiro positivo: "}}
 B --> C[\n\]
 C --> D{n >= 0}
-D --SE--> E[\Inicialize fatorial = 1\]
-E --SENÃO--> F{{"Erro: n incalido"}}
-F --> Z
-E --> G[[PARA i de 1 ATÉ n]]
-G --> H[\fatoreal = fatoreal * i\]
-H --LOOP--> G
-G --> I{{"O fatoreal é: ", fatoreal}}
-I --> Z([FIM])
+D --TRUE--> E[fator = 1]
+D --FALSE--> F{{"Erro: O valor deve ser maior ou igual a zero!"}}
+F --> Z([FIM])
+E --> G[[i=1 ATÉ n PASSO 1]]
+G --"i > n"--> H{{"O fatorial de, n, é:", fator}}
+G --"i=1,2,3,...n"--> I[fator = fator * i]
+I --LOOP--> G
+H --> Z
 
 ```
 
@@ -402,16 +402,29 @@ I --> Z([FIM])
 
 ```
 Algoritmo Calculo_Fatorial
-DECLARE n, i, , fatorial: INTEIRO
-ESCREVA "Digite um nùmero inteiro positivo: "
-LEIA n
-SE n <- >= 0
-fatoreal <- 1
-PARA i de 1 ATÉ n FAÇA
-    fatoreal <- fatoreal * i
-FIM_PARA
-ESCREVA "O fatoreal de", n, é: ", fatoreal
-FIM_ALGORITMO
+DECLARE n: INTEIRO
+INICIO
+    // Obter um numero    
+    ESCREVA "Digite um nùmero inteiro positivo: "
+    // Guarda esta informação
+    LEIA n
+    // informar condições iniciais
+    SE n >= 0 ENTÃO
+        // inserir condição matematica
+        fator <- 1
+        // Inseri condições para ocorrer as interações
+        PARA i de 1 ATÉ n PASSO 1 FAÇA
+        //Incrementar o valor atual $fator$ multiplicando pelo valor de $i$
+        fator <- fator * i
+    FIM_PARA
+    //Exibir o resultado
+    ESCREVA "0 fatorial de, n, é:", fator
+    //Se não satisfazer exibir este resultado
+    SENÃO    
+        ESCREVA "O valor deve ser maior ou igual a zero!"
+    FIM_SE
+
+FIM
 ```
 
 #### Tabela de testes (0.5 ponto)
@@ -419,13 +432,13 @@ FIM_ALGORITMO
 // fatoreal de 5! = 5 * 4 * 3 * 2 * 1 = 120 //
 
 
-|n = 5|fatorial = 1| i = i * n | n! = n! * i | saida  |  
-| --  |     --     |     --    |    --       |  --    |       
-|  -  |     -      |           | n! = 1 * 1  |   1    |              
-|  -  |     -      |           | n! = 1 * 2  |   2    |              
-|  -  |     -      |           | n! = 2 * 3  |   6    |
-|  -  |     -      |           | n! = 6 * 4  |   24   |
-|  -  |     -      |           | n! = 24 * 5 |  120   | 
+|n = 5|  i  |fatorial = 1| n! = n! * i |   n!   |       saida         | 
+| --  |  -- |     --     |    --       |  --    |         --          |
+|  5  |  1  |     1      | n! = 1 * 1  |   1    |                     |           
+|  5  |  2  |     1      | n! = 1 * 2  |   2    |                     |
+|  5  |  3  |     2      | n! = 2 * 3  |   6    |                     |
+|  5  |  4  |     6      | n! = 6 * 4  |   24   |                     |
+|  5  |  5  |    24      | n! = 24 * 5 |  120   |O fatorial de 5 é 120|
 
 
 
@@ -435,26 +448,31 @@ Gerar e imprimir os $n$ primeiros termos da sequência de Fibonacci, onde $n ≥
 Os primeiros termos são: $0, 1, 1, 2, 3, 5, 8, 13, \dots$ <br>
 Cada termo, além dos dois primeiros, é derivado da soma dos seus dois antecessores mais próximos.
 
+#### Descrição geral do algoritmo
+
+1. Obter o número de termos $n$, onde $n \geq 1$;
+2. Inicializar os dois primeiros termos da série nas variável $a$ e $b$ com 0 (zero);
+3. Iterar o valor de $n$, ou seja, executar $n$ vezes, as instruções abaixo:
+    - Imprimir o termo inicial $a$ (instrução para exibir a sequência ao atualizar a variável $a$);
+    - Somar os termos $a$ e $b$ na variável $termo_atual$;
+    - Atribuir a variável $a$ o valor da variável $b$;
+    - Atribuir a variável $b$ o valor da variável $termo_atual$.
+
 #### Fluxograma (0.5 ponto)
 
 ```mermaid
 flowchart TD
-A([INICIO]) --> B{{"Digite o valor de n: "}}
+A([INICIO]) --> B{{"Digite o numero de termos da série Fibonacci: "}}
 B --> C[\n\]
-C --> D{n >= 1}
-D --SE--> E[\Inicialize a = 0 , b = 1\]
-E --> F{{"Erro: n invalido"}}
-F --> Z
-F --SENÃO--> G[Imprima a, b]
-G --> H[[PARA i de 3 ATÉ n]]
-H --> I[próximo = a + b]
-I --> J[Imprima proximo]
-J --> K[\A = B\]
-K --> L[\b = proximo\]
-L --> H
-G --> Z([FIM])
-
- 
+C --> D[a = 0]
+D --> E[b = 1]
+E --> F[[i=1 ATÉ n PASSO 1]]
+F --"i > n"--> Z([FIM])
+F --"i=1,2,3,...,n"--> G{{a}}
+G --> H[termo_atual = a + b]
+H --> I[a = b]
+I --> J[b = termo_atual]
+J --LOOP--> F
 ```
 
 #### Pseudocódigo (1.0 ponto)
@@ -480,16 +498,13 @@ FIM_ALGORITMO
 ```
 #### Tabela de testes (0.5 ponto)
 
-| It  |  n  |  termo | proximo |   saida    | 
-|  -- | --  |   --   |    --   |     --     | 
-|  1  |  8  |   0    |    -    |     0      |
-|  2  |  8  |   1    |    -    |     1      |
-|  3  |  8  |   -    |  0 + 1  |     1      |            
-|  4  |  8  |   -    |  1 + 1  |     2      |            
-|  5  |  8  |   -    |  1 + 2  |     3      |            
-|  6  |  8  |   -    |  2 + 3  |     5      |
-|  7  |  8  |   -    |  3 + 5  |     8      |
-|  8  |  8  |   -    |  5 + 8  |    13      |
+| it | n  | a  | b  | i  | saída | termo_atual = a + b | a = b | b = termo_atual |
+| -- | -- | -- | -- | -- | --    | --                  | --    | --              |
+| 1  | 5  | 0  | 1  | 1  | 0     | 0 + 1 = 1           | 1     | 1               |
+| 2  | 5  | 1  | 1  | 2  | 1     | 1 + 1 = 2           | 1     | 2               |
+| 3  | 5  | 1  | 2  | 3  | 1     | 1 + 2 = 3           | 2     | 3               |
+| 4  | 5  | 2  | 3  | 4  | 2     | 2 + 3 = 5           | 3     | 5               |
+| 4  | 5  | 3  | 5  | 5  | 3     | 3 + 5 = 8           | 5     | 8               |
 
 
 
@@ -531,8 +546,8 @@ FIM_ALGORITMO
 
 #### Tabela de testes (0.5 ponto)
 
-| interoção| número |numInvertido = 0|digito = número % 10|numInvertido = número * 10 + digito|número = número // 10|numInvertido|
-|    --    |   --   |       --       |         --         |                  --               |        --           |    --      |
-|     1    |  154   |       -        |   154 % 10 = 4     |          0 * 10 + 4 = 4           |   154 // 10 = 15    |            |
-|     2    |   15   |       -        |   15 % 10 = 5      |          4 * 10 + 5 = 45          |    15 // 10 = 1     |            |
-|     3    |    1   |       -        |    1 % 10 = 1      |         45 * 10 + 1 = 451         |     1 // 10 = 0     |            |
+| interoção| número |numInvertido = 0|digito = número % 10|numInvertido = número * 10 + digito|número = número // 10|    numInvertido    |
+|    --    |   --   |       --       |         --         |                  --               |        --           |          --        |
+|     1    |  154   |       -        |   154 % 10 = 4     |          0 * 10 + 4 = 4           |   154 // 10 = 15    |                    |
+|     2    |   15   |       -        |   15 % 10 = 5      |          4 * 10 + 5 = 45          |    15 // 10 = 1     |                    |
+|     3    |    1   |       -        |    1 % 10 = 1      |         45 * 10 + 1 = 451         |     1 // 10 = 0     |Número invertido:451|
