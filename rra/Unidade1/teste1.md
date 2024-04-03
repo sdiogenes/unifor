@@ -62,13 +62,14 @@ Sabe-se que os funcionários que recebem atualmente salário de até R$ 500 ter�
 ```mermaid
 flowchart TD
 A([INICIO]) --> B{{"Digite o salário atual: "}}
-B --> C[\X\]
-C --> D{x >= 500}
-D --SE--> E[\y = x + 1.2 * x\]
-E --SENÃO--> G[\y = x + 1.1 * x\]
-G --> F{{"Novo saário é: ", y}}
-E --> F{{"Novo saário é: ", y}}
-F --> Z([FIM])
+B --> C[\sal_atual\]
+C --> D{sal_atual <= 500}
+D --FALSE--> E[novo_sal = sal_atual * 1.1]
+D --TRUE--> F[novo_sal = sal_atual * 1.2]
+E --> G{{"O Novo salário é: ", novo_sal}}
+F --> G
+G --> Z([FIM])
+
 
 ```
 
@@ -106,13 +107,15 @@ A([INICIO]) --> B{{"Digite a 1ª nota: "}}
 B --> C[\n1\]
 C --> D{{"Digite a 2ª nota: "}}
 D --> E[\n2\]
-E --> F[\"m = (n1 + n2)/2"\]
-F --> G{m >= 7}
-G --SE--> H{{"Aprovada: " m}}
-H --> Z([FIM])
-G --SENÃO--> I{{"Reprovada: " m}}
-I --> Z
-
+E --> F{nota1 >= 0<br> OU <br>nota2 >= 0} 
+F --FALSE--> G{{"A nota deve ser maior que zero!"}}
+G --> Z([FIM])
+F --TRUE--> H["media = (nota1 + nota2)/2"]
+H --> I{media >= 7}
+I --FALSE--> J{{"O aluno está reprovado!"}}
+I --TRUE--> L{{"O aluno está aprovado!"}}
+J --> Z
+L --> Z
 ```
 
 #### Pseudocódigo (1 ponto)
@@ -154,27 +157,44 @@ Caso não atender a restrição de idade, calcular quantos anos faltam para o ca
 flowchart TD
 A([INICIO]) --> B{{"Digite a idade: "}}
 B --> C[\i\]
-C --> D[\falta = 18 - 1\]
-D --> E{i >= 18}
-E--SE-->F{{"Idade permitida para tirar CNH"}}
-F-->Z([FIM])
-F--SENÃO-->G{{"Idade não permitida: ", falta}}
-G -->Z
+C --> D{idade < 0}
+D --FALSE--> E{i >= 18}
+E --FALSE--> F[anos_apto = 18 - idade]
+F --> G{{Faltam, anos_apto, anos para o candidato estar apto!}}
+G --> Z([FIM])
+E --TRUE--> H{{"O candidato está apto a tirar a CNH!"}}
+H --> Z
+D --TRUE--> I{{"A idade deve ser maior que zero!"}}
+I --> Z
 ```
 
 #### Pseudocódigo (1.0 ponto)
 
 ```
-Algoritmo Idade_CNH
-DECLERE i, falta NÚMERO
-ESCREVA "Digite a idade: "
-LEIA i
-falta = 18 - i
-SE i >= 18
-  ENTÃO ESCREVA "Idade permitida"
-SENÃO
-ESCREVA "Idade não permitida, falta: ", falta
-FIM_ALGORITMO
+Algoritmo Idade_Apta_CNH
+DECLERE i, anoas_ apto: INTEIRO
+
+INICIO
+  // Obter informação inicial
+  ESCREVA "Digite a idade: "
+  // Guarda esta informação
+  LEIA i
+  // inserir informações condicional
+  SE i < 0 ENTÃO
+  ESCREVA "Idade deve ser maior que zero!"
+  // inserir informações condicional
+  SENÃO
+    // inserir informações condicional
+    SE idade >= 18 ENTAO
+      ESCREVA "O candidato está apto a tirar a CNH!"
+    // inserir operação matematica
+    SENÃO
+      anos_apto <- 18 - idade
+      // imprimir resultado
+      ESCREVA "Faltam", anos_apto, "ano(s) para o candidato estar apto
+      FIM_SE
+  FIM_SE
+FIM
 ```
 #### Teste de mesa (1 ponto)
 
