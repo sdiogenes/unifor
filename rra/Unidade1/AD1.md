@@ -42,10 +42,10 @@ Por exemplo, se na apresentação do exercício, o aluno atenter parcialmente os
 Dadas duas variáveis, $a$ e $b$, implemente e teste um algoritmo para trocar os valores atribuídos a elas.
 
 #### Descrição geral do algoritmo
-1. Guardar o valor original da variável $a$ em uma variável auxiliar $aux$;
-2. Atribuir à variável $a$ o valor original da variável $b$;
-3. Atribuir à variável $b$ o valor original da variável $a$, que está armazenado na variável auxiliar $aux$.
-4. Exibir os novos valores de $a$ e $b$.
+1. Guardar o valor original da variável  "a"  em uma variável auxiliar "c";
+2. Atribuir à variável  "a"  o valor original da variável  "b";
+3. Atribuir à variável  "b"  o valor original da variável  "a" que está armazenado na variável auxiliar "c".
+4. Exibir os novos valores de "a"  e "b".
 
 #### Fluxograma (0.25 ponto)
 
@@ -67,26 +67,26 @@ J --> Z([FIM])
 
 ```
 ALGORITMO TrocaValores
-DECLARE a, b, c: NÚMERO    // duvidas: quando coloco NÚMERO é admitindo INTEIRO e REAL?
+DECLARE a, b, c: NÚMERO    // determinar todas as variaveis e os seu tipos
 
 INICIO
-    // Obter a primeira instrução
+    // Obter a primeira instrução (que é para o usuario colocar o valor da primeira variavel)
     ESCREVA "Digite o valor de a: "
-    // Guarda esta informação
+    // Guarda o valor desta variavel
     LEIA a
-    // Insira a segunda instrução
+    // Insira a segunda instrução (que é para o usuario colocar o valor da segunda variavel)
     ESCREVA "Digite o valor de b: "
-    // Guarda esta informação
+    // Guarda o valor desta outra variavel
     LEIA b
-    // Atribui uma terceira variaval igual a 'a'
+    // Atribui uma terceira variaval e igualar a primeira variavel
     c <- a
-    // Atribui 'a' igual 'b'
+    // Atribuir 'a' igual 'b'
     a <- b
-    // Atribui 'b' igual 'c'
+    // Atribuir 'b' igual 'c'
     b <- c
-    // O novo valor de a 
+    // imprimir o novo valor de a 
     ESCREVA "a=", b        // duvida é pra troca de valores 'a fica b' e 'b fica a'
-    // O novo valor de b 
+    // imprimir o novo valor de b 
     ESCREVA "b=", c       // duvida  c = a então b = c
 FIM_ALGORITMO
 ```
@@ -105,12 +105,12 @@ Dado um conjunto $n$ de notas de alunos em um exame, implemente e teste um algor
 Será considerado aprovado o aluno que tirar $nota$ 50 ou maior (no intervalo de 0 a 100).
 
 #### Descrição geral do algoritmo
-1. Obter o número de notas $n$ a serem processadas;
-2. Inicializar a contagem $cont$ com zero;
+1. Obter o número de notas "n", a serem processadas;
+2. Inicializar a contagem  "cont" com zero;
 3. Enquanto houver notas a serem processadas, fazer repetidamente:
     - obter a próxima nota;
-    - se a nota for suficiente para passar no exame ($n ≥ 50$) então adicionar 1 (um) à contagem $cont$;
-4. Exibir a contagem $cont$ (número total de aprovações).
+    - se a nota for suficiente para passar no exame ("n ≥ 50") então adicionar 1 (um) à contagem "cont";
+4. Exibir a contagem "cont" (número total de aprovações).
 
 #### Fluxograma (0.25 ponto)
 
@@ -156,11 +156,10 @@ M --LOOP--> E
 
 ```
 ALGORITMO Conta_Aprovados
-DECLARE n, nota, cont, i: INTEIRO
+DECLARE n, nota, cont, i: INTEIRO    // determinar todas as variaveis e os seu tipos
 
 INICIO
-
-    // Obter a primeira informação
+    // Obter a primeira informação (pedi para o usuario colocar o numero de alunos)
     ESCREVA "Digite o número de alunos: " // duvida neste caso tanto faz pedi a quantidade de notas ou a número de alunos?
     // Guarda esta informação
     LEIA n
@@ -215,12 +214,12 @@ Aceite apenas $n$ maior ou igual a zero.
 
 #### Descrição geral do algoritmo
 
-1. Obter a quantidade de números $n$ a serem somados.
-2. Inicializar a variável $soma$ com 0 (zero).
-3. Enquanto menos do que $n$ números tiverem sido somados, fazer repetidamente:
-    - obter o próximo número $i$;
-    - calcular a soma atual, adicionando o número $i$ obtido à soma mais recente;
-4. Exibir a soma dos $n$ números
+1. Obter a quantidade de números "n" a serem somados.
+2. Inicializar a variável "soma" com 0 (zero).
+3. Enquanto menos do que "n" números tiverem sido somados, fazer repetidamente:
+    - obter o próximo número "i";
+    - calcular a soma atual, adicionando o número "i" obtido à soma mais recente;
+4. Exibir a soma dos "n" números
    
 #### Fluxograma (0.25 ponto)
 
@@ -248,7 +247,7 @@ N --LOOP--> H
 
 ```
 ALGORITMO Soma_Número
-DECLARE n, i, soma: INTEIRO
+DECLARE n, i, soma: INTEIRO     // determinar todas as variaveis e os seu tipos
 
 INICIO
     // Obter a primeira informação
@@ -332,7 +331,7 @@ J --LOOP--> E
 
 ```
 ALGORITMO Soma_Serie
-DECLARE n, numerador, denominador: INTEIRO
+DECLARE n, numerador, denominador: INTEIRO    // determinar todas as variaveis e os seu tipos
 DECLARE S, termo: REAL
 
 INICIO
@@ -402,7 +401,7 @@ H --> Z
 
 ```
 Algoritmo Calculo_Fatorial
-DECLARE n: INTEIRO
+DECLARE n: INTEIRO      // determinar todas as variaveis e os seu tipos
 INICIO
     // Obter um numero    
     ESCREVA "Digite um nùmero inteiro positivo: "
@@ -479,7 +478,7 @@ J --LOOP--> F
 
 ```
 ALGORITMO Srquencia_Fibonacci
-DECLARE n, a, b, proximo: INTEIRO
+DECLARE n, a, b, proximo: INTEIRO      // determinar todas as variaveis e os seu tipos
 INICIO
     // Obter um numero
     ESCREVA "Digite o valor de n: "
@@ -551,7 +550,7 @@ L --> Z
 
 ```
 Algoritmo Inverter_Digitos
-DECLARE número, digito, numInvertido: INTEIRO
+DECLARE número, digito, numInvertido: INTEIRO    // determinar todas as variaveis e os seu tipos
 INICIO
     // Obter um numero
     ESCREVA "Digite um número inteiro positivo: "
