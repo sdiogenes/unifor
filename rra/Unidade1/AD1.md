@@ -85,10 +85,10 @@ INICIO
     // Atribuir 'b' igual 'c'
     b <- c
     // imprimir o novo valor de a 
-    ESCREVA "a=", b        // duvida é pra troca de valores 'a fica b' e 'b fica a'
+    ESCREVA "a=", b        // é pra troca de valores 'a fica b' e 'b fica a'  o do prof. esta diferente do meu (duvida "a=",a ou "a=", b ?)
     // imprimir o novo valor de b 
-    ESCREVA "b=", c       // duvida  c = a então b = c
-FIM_ALGORITMO
+    ESCREVA "b=", c       // (a minha logica  c = a então b = c)
+FIM
 ```
 
 #### Tabela de testes (0.25 ponto)
@@ -163,27 +163,35 @@ INICIO
     ESCREVA "Digite o número de alunos: " // duvida neste caso tanto faz pedi a quantidade de notas ou a número de alunos?
     // Guarda esta informação
     LEIA n
-    // Iniciar contagem aparti do zero
+    // Iniciar contagem aparti do zero             
     cont = 0
-    // inclementar de 1 ate n "quantidade de notas"
-    PARA i DE 1 ATÉ n FAÇA
+    // inclementar de 1 ate n                    //n é quantidade de notas
+    PARA i DE 1 ATÉ n FAÇA                      //enquanto i for menor que n faça
         // Insira a nota do primeiro aluno
         ESCREVA "Digite a nota do aluno", i, ":"
         // Guarda esta informação
-        LEIA nota
-        // se a nota >=50 e nota <=100 Aprovado
-        SE nota >= 50 E nota <= 100 ENTÃO
-            // conte
-            cont = cont + 1
-        FIM_SE
-    FIM_PARA
-    // Transmita o resuldado
-    ESCREVA "Número de alunos aprovados é:", cont
-
-FIM
-
-```
-
+        LEIA nota                                                // n = 3
+        // se a nota >=50 e nota <=100 Aprovado                  // se nota maio ou igual a 50 e menor ou igual 100 conte
+        SE nota >= 50 E nota <= 100 ENTÃO                        // cont = 0
+            // conte                                             // i <= n
+            cont = cont + 1                                      // 1ª iteração
+        FIM_SE                                                   // i = 1  -- (1 <= 3) satisfaz
+    FIM_PARA                                                     // 1ª nota = 60  2ª iteração
+    // Transmita o resuldado                                     // nota satisfaz  (nota >= 50 E nota <= 100)
+    ESCREVA "Número de alunos aprovados é:", cont                // cont = 0 + 1 -- cont = 1
+                                                                 // 2ª iteração 
+FIM                                                              // i = 2  --  (2 <= 3) satisfaz
+```                                                              // 2ª nota = 40
+                                                                 // nota nao satisfaz a condição ( nota >= 50 E nota <= 100 )  não conte
+                                                                 // cont permanece 1               
+                                                                 // 3ª iteração
+                                                                 // i = 3   -- (3 <= 3) satisfaz
+                                                                 // 3ª nota = 90
+                                                                 // nota satisfaz  (nota >= 50 E nota <= 100)
+                                                                 // cont = 1 + 1 -- cont = 2
+                                                                 // 4ª iteração
+                                                                 // i = 4  -- (4 <= 3) não satisfaz
+                                                                 // FIM
 #### Tabela de testes (0.25 ponto)
 Tabela de testes referente ao algoritmo usando o loop ENQUANTO.
 
